@@ -1,4 +1,4 @@
-﻿using FONdrum.DTO;
+﻿using FONdrum.DTO.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
