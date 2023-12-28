@@ -1,4 +1,5 @@
 ﻿using FONdrum.BusinessLogic.Abstractions.Messaging;
+using FONdrum.Domain.Shared.Paginations;
 using FONdrum.DTO.Models;
 using FONdrum.DTO.Request;
 
@@ -8,5 +9,5 @@ namespace FONdrum.BusinessLogic.Operations.Wines.Queries.GetWines
         PageParams PageParams, 
         ICollection<Guid> StyleIds, 
         ICollection<Guid> VarietyIds
-        ) : IQuery<ICollection<WineDto>>;
+        ) : IQuery<Paged<WineDto>>;
 }

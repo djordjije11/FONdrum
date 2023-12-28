@@ -20,12 +20,12 @@ namespace FONdrum.API.Middlewares
             catch (OperationCanceledException ex)
             {
                 await HandleExceptionAsync(context, ex, LogLevel.Error, StatusCodes.Status404NotFound,
-                    new ResponseMessage("The action is canceled."));
+                    new MessageResponse("The action is canceled."));
             }
             catch (Exception ex)
             {
                 await HandleExceptionAsync(context, ex, LogLevel.Critical, StatusCodes.Status500InternalServerError,
-                    new ResponseMessage("The action is not done successfully."));
+                    new MessageResponse("The action is not done successfully."));
             }
         }
 

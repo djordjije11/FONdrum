@@ -22,7 +22,11 @@ namespace FONdrum.Seeding.Wines
 
         private void SeedWines(List<WineStyle> wineStyles, List<GrapeVariety> grapeVarieties)
         {
-            for (int i = 1; i <= 30; i++)
+            //_context.Wines.Add(new Wine("Ime 1", 100, 100, wineStyles[0], grapeVarieties[0]));
+            //_context.Wines.Add(new Wine("Ime 2", 100, 100, wineStyles[0], grapeVarieties[3]));
+            //_context.Wines.Add(new Wine("Ime 1", 100, 100, wineStyles[1], grapeVarieties[2]));
+
+            for (int i = 1; i <= 10; i++)
             {
                 SeedWine(wineStyles, grapeVarieties, i);
             }
@@ -30,7 +34,9 @@ namespace FONdrum.Seeding.Wines
 
         private void SeedWine(List<WineStyle> wineStyles, List<GrapeVariety> grapeVarieties, int counter)
         {
-            _context.Wines.Add(new Wine($"Ime {counter}", _random.NextDouble() * 10000, _random.Next(200),
+            double price = Math.Round(_random.NextDouble() * 10000, 2);
+            Console.WriteLine(price);
+            _context.Wines.Add(new Wine($"Ime {counter}", price, _random.Next(200),
                 wineStyles[_random.Next(wineStyles.Count)], grapeVarieties[_random.Next(grapeVarieties.Count)]));
         }
 

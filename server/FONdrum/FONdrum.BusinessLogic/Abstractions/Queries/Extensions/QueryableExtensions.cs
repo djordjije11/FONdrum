@@ -19,5 +19,15 @@ namespace FONdrum.BusinessLogic.Abstractions.Queries.Extensions
         {
             return condition ? query.Where(predicate) : query;
         }
+
+        public static IQueryable<TEntity> If<TEntity>(
+            this IQueryable<TEntity> query,
+            bool condition,
+            Func<IQueryable<TEntity>, IQueryable<TEntity>> func
+            )
+            where TEntity : class
+        {
+            return condition ? func(query) : query;
+        }
     }
 }

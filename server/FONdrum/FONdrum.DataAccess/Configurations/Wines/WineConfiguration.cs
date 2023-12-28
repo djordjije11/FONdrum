@@ -9,6 +9,10 @@ namespace FONdrum.DataAccess.Configurations.Wines
         public void Configure(EntityTypeBuilder<Wine> builder)
         {
             builder
+                .Property(w => w.RowVersion)
+                .IsRowVersion();
+
+            builder
                 .Property(w => w.Name)
                 .HasMaxLength(80)
                 .IsUnicode();

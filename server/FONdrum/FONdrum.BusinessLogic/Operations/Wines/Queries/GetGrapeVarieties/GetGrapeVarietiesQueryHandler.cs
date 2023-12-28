@@ -21,15 +21,34 @@ namespace FONdrum.BusinessLogic.Operations.Wines.Queries.GetGrapeVarieties
 
         public async Task<Result<ICollection<GrapeVarietyDto>>> Handle(GetGrapeVarietiesQuery request, CancellationToken cancellationToken)
         {
+            //  WITH SUBQUERY
             return await _mapper.ProjectTo<GrapeVarietyDto>(
                 _context.GrapeVarieties.WhereIf(
-                    gv => 
+                    gv =>
                     _context.Wines
                     .Where(w => request.WineStyleIds.Contains(w.StyleId))
                     .Select(w => w.VarietyId)
-                    .Contains(gv.Id), 
-                    request.WineStyleIds.Any())
-                ).ToListAsync();
+                    .Contains(gv.Id),
+                    request.WineStyleIds.Any()
+                    )
+                ).ToListAsync(cancellationToken);
+
+            //  WITH JOIN
+            //return await _mapper.ProjectTo<GrapeVarietyDto>(
+            //    _context.GrapeVarieties.If(
+            //        request.WineStyleIds.Any(),
+            //        query => query
+            //        .Join(
+            //            _context.Wines,
+            //            gv => gv.Id,
+            //            w => w.VarietyId,
+            //            (gv, w) => new { GrapeVariety = gv, Wine = w }
+            //            )
+            //        .Where(joined => request.WineStyleIds.Contains(joined.Wine.StyleId))
+            //        .Select(joined => joined.GrapeVariety)
+            //        .Distinct()
+            //        )
+            //    ).ToListAsync(cancellationToken);
         }
     }
 }

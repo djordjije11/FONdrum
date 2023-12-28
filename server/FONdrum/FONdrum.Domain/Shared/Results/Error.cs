@@ -25,5 +25,10 @@
         {
             return new Error(ErrorCode.BadRequest, message);
         }
+
+        public static Error Outdated()
+        {
+            return new Error(ErrorCode.Outdated, "You are working with the old version of data.");
+        }
     }
 }

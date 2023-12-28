@@ -1,6 +1,6 @@
 ﻿namespace FONdrum.Domain.Shared.Results
 {
-    public class Result<T> : IOperationResult
+    public class Result<T> : IResult
     {
         public bool IsError { get; set; }
         public Error? Error { get; set; }
@@ -16,7 +16,7 @@
             IsError = true;
             Error = error;
         }
-        private Result(IOperationResult result)
+        private Result(IResult result)
         {
             IsError = result.IsError;
             Error = result.Error;
@@ -33,7 +33,7 @@
         public static implicit operator Result<T>(Error? error) => new(error);
     }
 
-    public class Result : IOperationResult
+    public class Result : IResult
     {
         public bool IsError { get; set; }
         public Error? Error { get; set; }

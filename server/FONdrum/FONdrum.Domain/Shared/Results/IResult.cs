@@ -1,6 +1,6 @@
 ﻿namespace FONdrum.Domain.Shared.Results
 {
-    public interface IOperationResult
+    public interface IResult
     {
         public bool IsError { get; }
         public Error? Error { get; }

@@ -2,7 +2,9 @@
 {
     public enum ErrorCode
     {
-        BadRequest = 400,
-        NotFound = 404,
+        BadRequest = 1,
+        NotFound = 2,
+        Outdated = 3,
+        ModelInvalid = 4
     }
 }
