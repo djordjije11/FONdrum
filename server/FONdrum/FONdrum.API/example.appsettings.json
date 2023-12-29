@@ -8,5 +8,8 @@
   "AllowedHosts": "*",
   "ConnectionStrings": {
     "Default": "{{ Database Connection string }}"
+  },
+  "CORS": {
+    "Origins": [ "http://localhost:3000" ]
   }
 }

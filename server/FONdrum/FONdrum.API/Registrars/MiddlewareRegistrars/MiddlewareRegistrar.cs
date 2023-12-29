@@ -16,8 +16,9 @@ namespace FONdrum.API.Registrars.MiddlewareRegistrars
                 app.UseSwaggerUI();
                 SeederFactory.Handle(app);
             }
-
             app.UseHttpsRedirection();
+
+            app.UseCors(app.Configuration.GetRequiredSection("CORS:PolicyName").Get<string>());
 
             app.UseAuthorization();
 

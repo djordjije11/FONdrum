@@ -27,7 +27,7 @@ namespace FONdrum.BusinessLogic.Operations.Wines.Queries.GetWineStyles
                     ws =>
                     _context.Wines
                     .Where(w => request.GrapeVarietyIds.Contains(w.VarietyId))
-                    .Select(w => w.VarietyId)
+                    .Select(w => w.StyleId)
                     .Contains(ws.Id),
                     request.GrapeVarietyIds.Any()
                     )
