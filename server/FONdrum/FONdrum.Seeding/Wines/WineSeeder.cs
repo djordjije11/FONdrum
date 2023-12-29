@@ -34,9 +34,7 @@ namespace FONdrum.Seeding.Wines
 
         private void SeedWine(List<WineStyle> wineStyles, List<GrapeVariety> grapeVarieties, int counter)
         {
-            double price = Math.Round(_random.NextDouble() * 10000, 2);
-            Console.WriteLine(price);
-            _context.Wines.Add(new Wine($"Ime {counter}", price, _random.Next(200),
+            _context.Wines.Add(new Wine($"Ime {counter}", (decimal)(_random.Next(10000) + 0.99), _random.Next(200),
                 wineStyles[_random.Next(wineStyles.Count)], grapeVarieties[_random.Next(grapeVarieties.Count)]));
         }
 
