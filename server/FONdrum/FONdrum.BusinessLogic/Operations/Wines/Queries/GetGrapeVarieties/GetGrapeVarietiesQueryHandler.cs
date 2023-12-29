@@ -23,7 +23,8 @@ namespace FONdrum.BusinessLogic.Operations.Wines.Queries.GetGrapeVarieties
         {
             //  WITH SUBQUERY
             return await _mapper.ProjectTo<GrapeVarietyDto>(
-                _context.GrapeVarieties.WhereIf(
+                _context.GrapeVarieties
+                .WhereIf(
                     gv =>
                     _context.Wines
                     .Where(w => request.WineStyleIds.Contains(w.StyleId))
@@ -31,6 +32,7 @@ namespace FONdrum.BusinessLogic.Operations.Wines.Queries.GetGrapeVarieties
                     .Contains(gv.Id),
                     request.WineStyleIds.Any()
                     )
+                .OrderBy(gv => gv.Id)
                 ).ToListAsync(cancellationToken);
 
             //  WITH JOIN

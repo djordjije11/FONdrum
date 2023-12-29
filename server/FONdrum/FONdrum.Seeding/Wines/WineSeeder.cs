@@ -26,7 +26,7 @@ namespace FONdrum.Seeding.Wines
             //_context.Wines.Add(new Wine("Ime 2", 100, 100, wineStyles[0], grapeVarieties[3]));
             //_context.Wines.Add(new Wine("Ime 1", 100, 100, wineStyles[1], grapeVarieties[2]));
 
-            for (int i = 1; i <= 10; i++)
+            for (int i = 1; i <= 100; i++)
             {
                 SeedWine(wineStyles, grapeVarieties, i);
             }
