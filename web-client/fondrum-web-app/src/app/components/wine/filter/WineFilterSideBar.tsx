@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { WineStyle } from "../../../models/WineStyle";
 import getWineStylesAsync from "../../../services/request/wine/getWineStylesAsync";
-import FilterSelection from "./FilterSelection";
+import FilterSelection from "../../shared/filter/FilterSelection";
 import getGrapeVarietiesAsync from "../../../services/request/wine/getGrapeVarietiesAsync";
 import { GrapeVariety } from "../../../models/GrapeVariety";
 
@@ -12,7 +12,7 @@ interface FilterSideBarProps {
   setCheckedGrapeVarietyIds: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-export default function FilterSideBar(props: FilterSideBarProps) {
+export default function WineFilterSideBar(props: FilterSideBarProps) {
   const {
     checkedWineStyleIds,
     setCheckedWineStyleIds,

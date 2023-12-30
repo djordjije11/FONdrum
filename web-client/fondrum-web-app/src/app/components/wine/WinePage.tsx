@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import FilterSideBar from "./filter/FilterSideBar";
+import WineFilterSideBar from "./filter/WineFilterSideBar";
 import { Wine } from "../../models/Wine";
 import getWinesAsync from "../../services/request/wine/getWinesAsync";
+import WineCard from "./WineCard";
 
 export default function WinePage() {
   const [wines, setWines] = useState([] as Wine[]);
@@ -24,7 +25,7 @@ export default function WinePage() {
 
   return (
     <div className="flex justify-around h-full">
-      <FilterSideBar
+      <WineFilterSideBar
         checkedWineStyleIds={checkedWineStyleIds}
         setCheckedWineStyleIds={setCheckedWineStyleIds}
         checkedGrapeVarietyIds={checkedGrapeVarietyIds}
@@ -32,9 +33,7 @@ export default function WinePage() {
       />
       <div>
         {wines.map((wine) => (
-          <div key={wine.id}>
-            {wine.name} - {wine.price}
-          </div>
+          <WineCard wine={wine} />
         ))}
       </div>
     </div>
