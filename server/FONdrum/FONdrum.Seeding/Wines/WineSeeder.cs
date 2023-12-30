@@ -1,10 +1,12 @@
 ﻿using FONdrum.DataAccess;
 using FONdrum.Domain.Models;
+using FONdrum.Seeding.Helper;
 
 namespace FONdrum.Seeding.Wines
 {
     public class WineSeeder
     {
+        private const string WINE_FILE_PATH = "D:\\MyDocs\\Programming Projects\\GitRepositories\\FONdrum\\server\\FONdrum\\FONdrum.Seeding\\Files\\wines.csv";
         private FONdrumContext _context;
         private Random _random = new();
 
@@ -26,10 +28,19 @@ namespace FONdrum.Seeding.Wines
             //_context.Wines.Add(new Wine("Ime 2", 100, 100, wineStyles[0], grapeVarieties[3]));
             //_context.Wines.Add(new Wine("Ime 1", 100, 100, wineStyles[1], grapeVarieties[2]));
 
-            for (int i = 1; i <= 100; i++)
+            var csvDeserializer = new CsvDeserializer();
+            List<Wine> wines = csvDeserializer.Read<Wine>(WINE_FILE_PATH);
+            foreach (Wine wine in wines)
             {
-                SeedWine(wineStyles, grapeVarieties, i);
+                wine.Style = wineStyles[_random.Next(wineStyles.Count)];
+                wine.Variety = grapeVarieties[_random.Next(grapeVarieties.Count)];
+                _context.Wines.Add(wine);
             }
+
+            //for (int i = 1; i <= 100; i++)
+            //{
+            //    SeedWine(wineStyles, grapeVarieties, i);
+            //}
         }
 
         private void SeedWine(List<WineStyle> wineStyles, List<GrapeVariety> grapeVarieties, int counter)
