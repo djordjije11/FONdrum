@@ -31,7 +31,7 @@ export default function WinePage() {
         checkedGrapeVarietyIds={checkedGrapeVarietyIds}
         setCheckedGrapeVarietyIds={setCheckedGrapeVarietyIds}
       />
-      <div>
+      <div className="flex gap-4 flex-wrap">
         {wines.map((wine) => (
           <WineCard wine={wine} />
         ))}

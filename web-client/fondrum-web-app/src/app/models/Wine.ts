@@ -4,5 +4,7 @@ export type Wine = {
   name: string;
   price: number;
   stockQuantity: number;
-  imageUrl: string;
+  imageUrl?: string;
+  wineStyle: string;
+  grapeVariety: string;
 };
