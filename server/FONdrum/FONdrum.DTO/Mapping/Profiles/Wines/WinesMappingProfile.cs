@@ -8,7 +8,10 @@ namespace FONdrum.DTO.Mapping.Profiles.Wines
     {
         public WinesMappingProfile()
         {
-            CreateMap<Wine, WineDto>();
+            CreateMap<Wine, WineDto>()
+                .ConstructUsing((w) => new WineDto(
+                    w.RowVersion, w.Id, w.Name, w.Price, w.StockQuantity, w.ImageUrl, w.Style.Name, w.Variety.Name)
+                );
             CreateMap<WineStyle, WineStyleDto>();
             CreateMap<GrapeVariety, GrapeVarietyDto>();
         }
