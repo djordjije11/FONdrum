@@ -1,4 +1,4 @@
-import { WineStyle } from "../../../models/WineStyle";
+import { WineStyleCollection } from "../../../models/WineStyle";
 import { API_BASE_URL } from "../apiUrl";
 
 const GET_WINE_STYLES_URL = `${API_BASE_URL}/wine/style`;
@@ -11,7 +11,7 @@ export function createFilterByGrapeVarietiesQueryParams(
 
 export default async function getWineStylesAsync(
   grapeVarietyIds: string[]
-): Promise<WineStyle[]> {
+): Promise<WineStyleCollection> {
   const response = await fetch(
     `${GET_WINE_STYLES_URL}?${createFilterByGrapeVarietiesQueryParams(
       grapeVarietyIds

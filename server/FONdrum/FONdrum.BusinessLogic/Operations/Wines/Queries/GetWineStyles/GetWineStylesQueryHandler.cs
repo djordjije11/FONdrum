@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FONdrum.BusinessLogic.Operations.Wines.Queries.GetWineStyles
 {
-    public class GetWineStylesQueryHandler : IQueryHandler<GetWineStylesQuery, ICollection<WineStyleDto>>
+    public class GetWineStylesQueryHandler : IQueryHandler<GetWineStylesQuery, WineStyleCollectionDto>
     {
         private FONdrumContext _context;
         private IMapper _mapper;
@@ -19,10 +19,16 @@ namespace FONdrum.BusinessLogic.Operations.Wines.Queries.GetWineStyles
             _mapper = mapper;
         }
 
-        public async Task<Result<ICollection<WineStyleDto>>> Handle(GetWineStylesQuery request, CancellationToken cancellationToken)
+        public async Task<Result<WineStyleCollectionDto>> Handle(GetWineStylesQuery request, CancellationToken cancellationToken)
         {
+            long totalCount = await _context.WineStyles.LongCountAsync();
+            if (totalCount == 0)
+            {
+                return new WineStyleCollectionDto([], totalCount);
+            }
+
             //  WITH SUBQUERY
-            return await _mapper.ProjectTo<WineStyleDto>(
+            ICollection<WineStyleDto> wineStyles = await _mapper.ProjectTo<WineStyleDto>(
                 _context.WineStyles
                 .WhereIf(
                     ws =>
@@ -34,6 +40,8 @@ namespace FONdrum.BusinessLogic.Operations.Wines.Queries.GetWineStyles
                     )
                 .OrderBy(ws => ws.Id)
                 ).ToListAsync(cancellationToken);
+
+            return new WineStyleCollectionDto(wineStyles, totalCount);
 
             //  WITH JOIN
             //return await _mapper.ProjectTo<WineStyleDto>(

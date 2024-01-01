@@ -1,4 +1,3 @@
-import { Button } from "@material-tailwind/react";
 import { Wine } from "../../models/Wine";
 
 export interface WineCardProps {

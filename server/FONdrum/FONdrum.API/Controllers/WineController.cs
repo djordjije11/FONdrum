@@ -38,7 +38,7 @@ namespace FONdrum.API.Controllers
         }
 
         [HttpGet("style")]
-        public async Task<ActionResult<List<WineStyleDto>>> GetWineStyles(
+        public async Task<ActionResult<WineStyleCollectionDto>> GetWineStyles(
             [FromQuery(Name = "varietyId")] List<Guid> varietyIds, 
             CancellationToken cancellationToken
             )
@@ -48,7 +48,7 @@ namespace FONdrum.API.Controllers
         }
 
         [HttpGet("variety")]
-        public async Task<ActionResult<List<GrapeVarietyDto>>> GetGrapeVarieties(
+        public async Task<ActionResult<GrapeVarietyCollectionDto>> GetGrapeVarieties(
             [FromQuery(Name = "styleId")] List<Guid> styleIds, 
             CancellationToken cancellationToken
             )

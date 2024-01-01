@@ -24,18 +24,21 @@ export default function WinePage() {
   useEffect(fetchWinesEffect, [checkedWineStyleIds, checkedGrapeVarietyIds]);
 
   return (
-    <div className="flex justify-around h-full">
-      <WineFilterSideBar
-        checkedWineStyleIds={checkedWineStyleIds}
-        setCheckedWineStyleIds={setCheckedWineStyleIds}
-        checkedGrapeVarietyIds={checkedGrapeVarietyIds}
-        setCheckedGrapeVarietyIds={setCheckedGrapeVarietyIds}
-      />
-      <div className="flex gap-4 flex-wrap">
+    <div className="grid grid-cols-12 h-full mt-2">
+      <div className="col-span-2 flex justify-center">
+        <WineFilterSideBar
+          checkedWineStyleIds={checkedWineStyleIds}
+          setCheckedWineStyleIds={setCheckedWineStyleIds}
+          checkedGrapeVarietyIds={checkedGrapeVarietyIds}
+          setCheckedGrapeVarietyIds={setCheckedGrapeVarietyIds}
+        />
+      </div>
+      <div className="col-span-7 flex gap-4 flex-wrap">
         {wines.map((wine) => (
-          <WineCard wine={wine} />
+          <WineCard key={wine.id} wine={wine} />
         ))}
       </div>
+      <div className="col-span-3"></div>
     </div>
   );
 }

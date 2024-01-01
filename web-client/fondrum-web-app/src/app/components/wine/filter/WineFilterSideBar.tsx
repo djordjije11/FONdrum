@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { WineStyle } from "../../../models/WineStyle";
+import { WineStyle, WineStyleCollection } from "../../../models/WineStyle";
 import getWineStylesAsync from "../../../services/request/wine/getWineStylesAsync";
 import FilterSelection from "../../shared/filter/FilterSelection";
 import getGrapeVarietiesAsync from "../../../services/request/wine/getGrapeVarietiesAsync";
-import { GrapeVariety } from "../../../models/GrapeVariety";
+import {
+  GrapeVariety,
+  GrapeVarietyCollection,
+} from "../../../models/GrapeVariety";
 
 interface FilterSideBarProps {
   checkedWineStyleIds: string[];
@@ -20,19 +23,27 @@ export default function WineFilterSideBar(props: FilterSideBarProps) {
     setCheckedGrapeVarietyIds,
   } = props;
 
-  const [wineStyles, setWineStyles] = useState([] as WineStyle[]);
-  const [grapeVarieties, setGrapeVarieties] = useState([] as GrapeVariety[]);
+  const [wineStyleCollection, setWineStyleCollection] = useState({
+    wineStyles: [] as WineStyle[],
+  } as WineStyleCollection);
+  const [grapeVarietyCollection, setGrapeVarietyColleciton] = useState({
+    grapeVarieties: [] as GrapeVariety[],
+  } as GrapeVarietyCollection);
 
   const fetchWineStylesEffect = () => {
     (async () => {
-      const wineStyles = await getWineStylesAsync(checkedGrapeVarietyIds);
-      setWineStyles(wineStyles);
+      const wineStyleCollection = await getWineStylesAsync(
+        checkedGrapeVarietyIds
+      );
+      setWineStyleCollection(wineStyleCollection);
     })();
   };
 
   const fetchGrapeVarietiesEffect = () => {
     (async () => {
-      setGrapeVarieties(await getGrapeVarietiesAsync(checkedWineStyleIds));
+      setGrapeVarietyColleciton(
+        await getGrapeVarietiesAsync(checkedWineStyleIds)
+      );
     })();
   };
 
@@ -56,21 +67,23 @@ export default function WineFilterSideBar(props: FilterSideBarProps) {
   }
 
   return (
-    <div className="bg-gray-200 min-h-[720px] min-w-[240px] h-full rounded-md">
-      <div>
+    <div className="bg-gray-200 rounded-md w-fit h-fit p-6 flex flex-col gap-2">
+      <div className="p-2">
         <FilterSelection
           title="Wine styles"
           typeName="wine-style"
-          valuesArray={wineStyles}
+          valuesArray={wineStyleCollection.wineStyles}
           handleChecked={handleWineStyleChecked}
+          totalCount={wineStyleCollection.totalCount}
         />
       </div>
-      <div>
+      <div className="p-2">
         <FilterSelection
           title="Grape varieties"
           typeName="grape-variety"
-          valuesArray={grapeVarieties}
+          valuesArray={grapeVarietyCollection.grapeVarieties}
           handleChecked={handleGrapeVarietiesChecked}
+          totalCount={grapeVarietyCollection.totalCount}
         />
       </div>
     </div>

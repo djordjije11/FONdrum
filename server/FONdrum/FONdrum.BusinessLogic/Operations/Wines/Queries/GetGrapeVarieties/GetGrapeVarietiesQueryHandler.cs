@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FONdrum.BusinessLogic.Operations.Wines.Queries.GetGrapeVarieties
 {
-    public class GetGrapeVarietiesQueryHandler : IQueryHandler<GetGrapeVarietiesQuery, ICollection<GrapeVarietyDto>>
+    public class GetGrapeVarietiesQueryHandler : IQueryHandler<GetGrapeVarietiesQuery, GrapeVarietyCollectionDto>
     {
         private readonly FONdrumContext _context;
         private readonly IMapper _mapper;
@@ -19,10 +19,16 @@ namespace FONdrum.BusinessLogic.Operations.Wines.Queries.GetGrapeVarieties
             _mapper = mapper;
         }
 
-        public async Task<Result<ICollection<GrapeVarietyDto>>> Handle(GetGrapeVarietiesQuery request, CancellationToken cancellationToken)
+        public async Task<Result<GrapeVarietyCollectionDto>> Handle(GetGrapeVarietiesQuery request, CancellationToken cancellationToken)
         {
+            long totalCount = await _context.GrapeVarieties.LongCountAsync();
+            if (totalCount == 0)
+            {
+                return new GrapeVarietyCollectionDto([], totalCount);
+            }
+
             //  WITH SUBQUERY
-            return await _mapper.ProjectTo<GrapeVarietyDto>(
+            ICollection<GrapeVarietyDto> grapeVarieties = await _mapper.ProjectTo<GrapeVarietyDto>(
                 _context.GrapeVarieties
                 .WhereIf(
                     gv =>
@@ -34,6 +40,8 @@ namespace FONdrum.BusinessLogic.Operations.Wines.Queries.GetGrapeVarieties
                     )
                 .OrderBy(gv => gv.Id)
                 ).ToListAsync(cancellationToken);
+
+            return new GrapeVarietyCollectionDto(grapeVarieties, totalCount);
 
             //  WITH JOIN
             //return await _mapper.ProjectTo<GrapeVarietyDto>(
