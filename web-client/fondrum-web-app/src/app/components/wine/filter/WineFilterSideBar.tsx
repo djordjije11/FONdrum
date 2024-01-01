@@ -67,8 +67,8 @@ export default function WineFilterSideBar(props: FilterSideBarProps) {
   }
 
   return (
-    <div className="bg-gray-200 rounded-md w-fit h-fit p-6 flex flex-col gap-2">
-      <div className="p-2">
+    <div className="bg-gray-50 rounded-lg w-fit h-fit p-10 flex flex-col gap-8 border-2 border-blue-gray-800">
+      <div>
         <FilterSelection
           title="Wine styles"
           typeName="wine-style"
@@ -77,7 +77,7 @@ export default function WineFilterSideBar(props: FilterSideBarProps) {
           totalCount={wineStyleCollection.totalCount}
         />
       </div>
-      <div className="p-2">
+      <div>
         <FilterSelection
           title="Grape varieties"
           typeName="grape-variety"
