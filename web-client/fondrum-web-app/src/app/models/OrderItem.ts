@@ -12,3 +12,13 @@ export type OrderItemDto = {
   };
   amount: number;
 };
+
+export function mapOrderItem(orderItem: OrderItem): OrderItemDto {
+  return {
+    wineId: {
+      rowVersion: orderItem.wine.rowVersion,
+      id: orderItem.wine.id,
+    },
+    amount: orderItem.amount,
+  };
+}

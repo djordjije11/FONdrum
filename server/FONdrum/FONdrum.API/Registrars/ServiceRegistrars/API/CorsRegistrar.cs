@@ -1,4 +1,6 @@
 ﻿
+using FONdrum.API.Http.Headers;
+
 namespace FONdrum.API.Registrars.ServiceRegistrars.API
 {
     public class CorsRegistrar : IServiceRegistrar
@@ -18,6 +20,7 @@ namespace FONdrum.API.Registrars.ServiceRegistrars.API
 
                                       policy.AllowAnyMethod()
                                             .AllowAnyHeader()
+                                            .WithExposedHeaders(PaginationHeaders.Get())
                                             .AllowCredentials();
                                   });
             });

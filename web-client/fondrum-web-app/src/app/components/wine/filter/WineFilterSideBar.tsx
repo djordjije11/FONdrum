@@ -68,24 +68,32 @@ export default function WineFilterSideBar(props: FilterSideBarProps) {
 
   return (
     <div className="bg-gray-50 rounded-lg w-fit h-fit p-10 flex flex-col gap-8 border-2 border-blue-gray-800">
-      <div>
-        <FilterSelection
-          title="Wine styles"
-          typeName="wine-style"
-          valuesArray={wineStyleCollection.wineStyles}
-          handleChecked={handleWineStyleChecked}
-          totalCount={wineStyleCollection.totalCount}
-        />
-      </div>
-      <div>
-        <FilterSelection
-          title="Grape varieties"
-          typeName="grape-variety"
-          valuesArray={grapeVarietyCollection.grapeVarieties}
-          handleChecked={handleGrapeVarietiesChecked}
-          totalCount={grapeVarietyCollection.totalCount}
-        />
-      </div>
+      {false ||
+      (wineStyleCollection.wineStyles.length === 0 &&
+        grapeVarietyCollection.grapeVarieties.length === 0) ? (
+        <div className="h-[440px] w-[120px]" />
+      ) : (
+        <>
+          <div>
+            <FilterSelection
+              title="Wine styles"
+              typeName="wine-style"
+              valuesArray={wineStyleCollection.wineStyles}
+              handleChecked={handleWineStyleChecked}
+              totalCount={wineStyleCollection.totalCount}
+            />
+          </div>
+          <div>
+            <FilterSelection
+              title="Grape varieties"
+              typeName="grape-variety"
+              valuesArray={grapeVarietyCollection.grapeVarieties}
+              handleChecked={handleGrapeVarietiesChecked}
+              totalCount={grapeVarietyCollection.totalCount}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 }

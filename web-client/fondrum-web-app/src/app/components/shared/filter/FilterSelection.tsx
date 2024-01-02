@@ -15,7 +15,6 @@ export default function FilterSelection<T extends FilterSelectionProperty>(
   props: FilterSelectionProps<T>
 ) {
   const { title, typeName, valuesArray, handleChecked, totalCount } = props;
-  console.log(valuesArray);
 
   function FilterFieldFill(): React.JSX.Element {
     const arr = Array.from(
@@ -25,7 +24,7 @@ export default function FilterSelection<T extends FilterSelectionProperty>(
     return (
       <div>
         {arr.map((e) => (
-          <div key={e} className="h-6" />
+          <div key={e} className="h-7 flex gap-2 border-b py-4" />
         ))}
       </div>
     );

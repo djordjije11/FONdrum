@@ -7,10 +7,25 @@ import { ThemeProvider } from "@material-tailwind/react";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
-root.render(
-  <React.StrictMode>
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
-  </React.StrictMode>
-);
+
+const strictMode: boolean = false;
+
+function renderApp() {
+  if (strictMode) {
+    root.render(
+      <React.StrictMode>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </React.StrictMode>
+    );
+  } else {
+    root.render(
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    );
+  }
+}
+
+renderApp();

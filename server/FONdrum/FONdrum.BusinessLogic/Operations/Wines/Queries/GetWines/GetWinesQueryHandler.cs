@@ -23,6 +23,7 @@ namespace FONdrum.BusinessLogic.Operations.Wines.Queries.GetWines
         public async Task<Result<Paged<WineDto>>> Handle(GetWinesQuery request, CancellationToken cancellationToken)
         {
             var query = _context.Wines
+                .Where(w => w.StockQuantity > 0)
                 .WhereIf(
                     w => request.StyleIds.Contains(w.StyleId),
                     request.StyleIds.Any()
