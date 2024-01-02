@@ -7,6 +7,9 @@ namespace FONdrum.DTO.Validation.Models.Orders
     {
         public OrderDtoValidator(IValidator<OrderItemDto> orderItemDtoValidator)
         {
+            RuleFor(o => o.Items)
+                .NotEmpty()
+                .WithMessage("Order must have at least one order item.");
             RuleForEach(o => o.Items)
                 .SetValidator(orderItemDtoValidator);
         }
