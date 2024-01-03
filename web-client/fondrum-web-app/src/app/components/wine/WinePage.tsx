@@ -76,6 +76,25 @@ export default function WinePage() {
     return wine.stockQuantity <= order.getOrderItemAmountByWine(wine);
   }
 
+  function WineCardsContainer(): React.JSX.Element {
+    if (pagedWine.data.length === 0) {
+      return <div className="w-11/12 pl-2"></div>;
+    }
+
+    return (
+      <div className="flex justify-start gap-4 flex-wrap w-11/12 pl-2">
+        {pagedWine.data.map((wine) => (
+          <WineCard
+            key={wine.id}
+            wine={wine}
+            handleAddClick={addWineToOrder}
+            addDisabled={isAddWineButtonDisabled(wine)}
+          />
+        ))}
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-rows-8 min-h-fit max-h-[720px]">
       <div className="row-span-7 grid grid-cols-12 h-[620px] mt-2">
@@ -94,16 +113,7 @@ export default function WinePage() {
               setPageQueryParams((prev) => ({ ...prev, pageNumber }))
             }
           >
-            <div className="flex justify-start gap-4 flex-wrap w-11/12 pl-2">
-              {pagedWine.data.map((wine) => (
-                <WineCard
-                  key={wine.id}
-                  wine={wine}
-                  handleAddClick={addWineToOrder}
-                  addDisabled={isAddWineButtonDisabled(wine)}
-                />
-              ))}
-            </div>
+            <WineCardsContainer />
           </WinePagination>
         </div>
         <div className="min-h-full col-span-3 flex justify-center px-8">
