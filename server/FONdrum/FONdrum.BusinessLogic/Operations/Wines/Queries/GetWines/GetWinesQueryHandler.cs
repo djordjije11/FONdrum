@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using FONdrum.BusinessLogic.Abstractions.Messaging;
+using FONdrum.BusinessLogic.Abstractions.Operations;
 using FONdrum.BusinessLogic.Abstractions.Queries.Extensions;
 using FONdrum.DataAccess;
 using FONdrum.Domain.Shared.Paginations;
@@ -35,9 +35,7 @@ namespace FONdrum.BusinessLogic.Operations.Wines.Queries.GetWines
 
             long winesCount = await query.LongCountAsync(cancellationToken);
             if (winesCount == 0)
-            {
                 return Paged<WineDto>.Empty();
-            }
 
             IList<WineDto> wines = await _mapper.ProjectTo<WineDto>(query.Page(request.PageParams)).ToListAsync();
             var pageInfo = new PageInfo(winesCount, request.PageParams.PageSize, request.PageParams.PageNumber);

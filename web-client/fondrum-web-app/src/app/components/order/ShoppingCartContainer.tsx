@@ -3,7 +3,7 @@ import { OrderItem } from "../../models/OrderItem";
 import addOrderAsync from "../../services/request/order/addOrderAsync";
 import failAlert from "../alert/failAlert";
 import successAlert from "../alert/successAlert";
-import ShopIcon from "../shared/icons/ShopIcon";
+import ShopIcon from "../shared/icons/home/ShopIcon";
 import OrderItemCard from "./OrderItemCard";
 
 interface ShoppingCartContainerProps {

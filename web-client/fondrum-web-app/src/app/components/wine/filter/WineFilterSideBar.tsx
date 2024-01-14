@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { WineStyle, WineStyleCollection } from "../../../models/WineStyle";
-import getWineStylesAsync from "../../../services/request/wine/getWineStylesAsync";
 import FilterSelection from "../../shared/filter/FilterSelection";
-import getGrapeVarietiesAsync from "../../../services/request/wine/getGrapeVarietiesAsync";
 import {
   GrapeVariety,
   GrapeVarietyCollection,
 } from "../../../models/GrapeVariety";
+import useFetchWineStylesEffect from "../hooks/useFetchWineStylesEffect";
+import useFetchGrapeVarietiesEffect from "../hooks/useFetchGrapeVarietiesEffect";
 
 interface FilterSideBarProps {
   checkedWineStyleIds: string[];
@@ -30,25 +30,8 @@ export default function WineFilterSideBar(props: FilterSideBarProps) {
     grapeVarieties: [] as GrapeVariety[],
   } as GrapeVarietyCollection);
 
-  const fetchWineStylesEffect = () => {
-    (async () => {
-      const wineStyleCollection = await getWineStylesAsync(
-        checkedGrapeVarietyIds
-      );
-      setWineStyleCollection(wineStyleCollection);
-    })();
-  };
-
-  const fetchGrapeVarietiesEffect = () => {
-    (async () => {
-      setGrapeVarietyColleciton(
-        await getGrapeVarietiesAsync(checkedWineStyleIds)
-      );
-    })();
-  };
-
-  useEffect(fetchWineStylesEffect, [checkedGrapeVarietyIds]);
-  useEffect(fetchGrapeVarietiesEffect, [checkedWineStyleIds]);
+  useFetchWineStylesEffect(setWineStyleCollection, checkedGrapeVarietyIds);
+  useFetchGrapeVarietiesEffect(setGrapeVarietyColleciton, checkedWineStyleIds);
 
   function handleWineStyleChecked(id: string, checked: boolean) {
     if (checked) {

@@ -1,6 +1,6 @@
 import { PageInfo } from "../../../models/shared/pagination/PageInfo";
-import LeftArrowIcon from "../../shared/pagination/LeftArrowIcon";
-import RightArrowIcon from "../../shared/pagination/RightArrowIcon";
+import LeftArrowIcon from "../../shared/icons/pagination/LeftArrowIcon";
+import RightArrowIcon from "../../shared/icons/pagination/RightArrowIcon";
 
 interface WinePaginationProps {
   pageInfo: PageInfo;

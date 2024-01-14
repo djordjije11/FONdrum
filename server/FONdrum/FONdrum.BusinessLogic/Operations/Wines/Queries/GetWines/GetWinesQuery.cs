@@ -1,4 +1,4 @@
-﻿using FONdrum.BusinessLogic.Abstractions.Messaging;
+﻿using FONdrum.BusinessLogic.Abstractions.Operations;
 using FONdrum.Domain.Shared.Paginations;
 using FONdrum.DTO.Models;
 using FONdrum.DTO.Request;

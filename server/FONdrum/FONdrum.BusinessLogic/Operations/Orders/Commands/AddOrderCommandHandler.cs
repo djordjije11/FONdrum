@@ -1,4 +1,4 @@
-﻿using FONdrum.BusinessLogic.Abstractions.Messaging;
+﻿using FONdrum.BusinessLogic.Abstractions.Operations;
 using FONdrum.DataAccess;
 using FONdrum.Domain.Models;
 using FONdrum.Domain.Shared.Results;

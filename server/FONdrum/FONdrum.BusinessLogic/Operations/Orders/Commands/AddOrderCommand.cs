@@ -1,4 +1,4 @@
-﻿using FONdrum.BusinessLogic.Abstractions.Messaging;
+﻿using FONdrum.BusinessLogic.Abstractions.Operations;
 using FONdrum.DTO.Models;
 
 namespace FONdrum.BusinessLogic.Operations.Orders.Commands

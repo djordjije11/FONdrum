@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import WineFilterSideBar from "./filter/WineFilterSideBar";
 import { Wine } from "../../models/Wine";
-import getWinesAsync from "../../services/request/wine/getWinesAsync";
 import WineCard from "./WineCard";
 import ShoppingCartContainer from "../order/ShoppingCartContainer";
 import { OrderModel } from "../../models/Order";
 import { _getDefaultPaged } from "../../models/shared/pagination/Paged";
 import { PageQueryParams } from "../../models/shared/pagination/PageQueryParams";
 import WinePagination from "./pagination/WinePagination";
+import useFetchWinesEffect from "./hooks/useFetchWinesEffect";
+import useChangePageQueryParamsOnFilterChangeEffect from "./hooks/useChangePageQueryParamsOnFilterChangeEffect";
 
 export default function WinePage() {
   const [pagedWine, setPagedWine] = useState(_getDefaultPaged<Wine>());
@@ -23,34 +24,18 @@ export default function WinePage() {
   );
   const [order, setOrder] = useState(new OrderModel());
 
-  const fetchWinesEffect = () => {
-    (async () => {
-      setPagedWine(
-        await getWinesAsync(
-          checkedWineStyleIds,
-          checkedGrapeVarietyIds,
-          pageQueryParams
-        )
-      );
-    })();
-  };
-
-  useEffect(fetchWinesEffect, [
+  useFetchWinesEffect(
+    setPagedWine,
     checkedWineStyleIds,
     checkedGrapeVarietyIds,
-    pageQueryParams,
-  ]);
+    pageQueryParams
+  );
 
-  const changePageQueryParamsOnFilterChangeEffect = () => {
-    (async () => {
-      setPageQueryParams((prev) => ({ ...prev, pageNumber: 1 }));
-    })();
-  };
-
-  useEffect(changePageQueryParamsOnFilterChangeEffect, [
+  useChangePageQueryParamsOnFilterChangeEffect(
+    setPageQueryParams,
     checkedWineStyleIds,
-    checkedGrapeVarietyIds,
-  ]);
+    checkedGrapeVarietyIds
+  );
 
   function addWineToOrder(wine: Wine) {
     const orderedWineItemResult = order.findOrderItemByWine(wine);

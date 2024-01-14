@@ -1,4 +1,4 @@
-import { PageInfo } from "../../../models/shared/pagination/PageInfo";
+import { PageInfo } from "../../../../models/shared/pagination/PageInfo";
 
 interface PaginationProps {
   pageInfo: PageInfo;

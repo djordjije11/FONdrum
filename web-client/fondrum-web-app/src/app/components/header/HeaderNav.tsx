@@ -1,6 +1,6 @@
 import { HOME_PAGE, WINE_PAGE } from "../router/AppRouter";
-import HomeIcon from "../shared/icons/HomeIcon";
-import ShopIcon from "../shared/icons/ShopIcon";
+import HomeIcon from "../shared/icons/home/HomeIcon";
+import ShopIcon from "../shared/icons/home/ShopIcon";
 import FONdrumLogo from "../shared/logo/FONdrumLogo";
 import Nav from "./Nav";
 

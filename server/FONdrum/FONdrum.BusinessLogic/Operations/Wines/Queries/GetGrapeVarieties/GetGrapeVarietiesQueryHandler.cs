@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using FONdrum.BusinessLogic.Abstractions.Messaging;
+using FONdrum.BusinessLogic.Abstractions.Operations;
 using FONdrum.BusinessLogic.Abstractions.Queries.Extensions;
 using FONdrum.DataAccess;
 using FONdrum.Domain.Shared.Results;
