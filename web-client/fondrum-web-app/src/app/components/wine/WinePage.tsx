@@ -38,23 +38,20 @@ export default function WinePage() {
   );
 
   function addWineToOrder(wine: Wine) {
-    const orderedWineItemResult = order.findOrderItemByWine(wine);
-    if (orderedWineItemResult === null) {
-      setOrder((prev) => new OrderModel([...prev.items, { wine, amount: 1 }]));
-      return;
-    }
-
-    setOrder(
-      (prev) =>
-        new OrderModel([
-          ...prev.items.slice(0, orderedWineItemResult.index),
-          {
-            wine: orderedWineItemResult.orderItem.wine,
-            amount: orderedWineItemResult.orderItem.amount + 1,
-          },
-          ...prev.items.slice(orderedWineItemResult.index + 1),
-        ])
-    );
+    setOrder((prev) => {
+      const orderedWineItemResult = prev.findOrderItemByWine(wine);
+      if (orderedWineItemResult === null) {
+        return new OrderModel([...prev.items, { wine, amount: 1 }]);
+      }
+      return new OrderModel([
+        ...prev.items.slice(0, orderedWineItemResult.index),
+        {
+          wine: orderedWineItemResult.orderItem.wine,
+          amount: orderedWineItemResult.orderItem.amount + 1,
+        },
+        ...prev.items.slice(orderedWineItemResult.index + 1),
+      ]);
+    });
   }
 
   function isAddWineButtonDisabled(wine: Wine): boolean {
