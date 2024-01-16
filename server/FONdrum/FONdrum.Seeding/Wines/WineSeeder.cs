@@ -1,14 +1,17 @@
 ﻿using FONdrum.DataAccess;
 using FONdrum.Domain.Models;
 using FONdrum.Seeding.Helper;
+using FONdrum.Seeding.Models.Wines;
 
 namespace FONdrum.Seeding.Wines
 {
     public class WineSeeder
     {
-        private const string WINE_FILE_PATH = "D:\\MyDocs\\Programming Projects\\GitRepositories\\FONdrum\\server\\FONdrum\\FONdrum.Seeding\\Files\\wines.csv";
+        private const string WINE_STYLES_FILE_PATH = "D:\\MyDocs\\Programming Projects\\GitRepositories\\FONdrum\\server\\FONdrum\\FONdrum.Seeding\\Files\\Wines\\wineStyles.csv";
+        private const string GRAPE_VARIETIES_FILE_PATH = "D:\\MyDocs\\Programming Projects\\GitRepositories\\FONdrum\\server\\FONdrum\\FONdrum.Seeding\\Files\\Wines\\grapeVarieties.csv";
+        private const string WINE_FILE_PATH = "D:\\MyDocs\\Programming Projects\\GitRepositories\\FONdrum\\server\\FONdrum\\FONdrum.Seeding\\Files\\Wines\\wines.csv";
+
         private FONdrumContext _context;
-        private Random _random = new();
 
         public WineSeeder(FONdrumContext context)
         {
@@ -17,62 +20,58 @@ namespace FONdrum.Seeding.Wines
 
         public void Seed()
         {
-            List<WineStyle> wineStyles = SeedWineStyles();
-            List<GrapeVariety> grapeVarieties = SeedGrapeVarieties();
-            SeedWines(wineStyles, grapeVarieties);
+            Dictionary<string, WineStyle> wineStyleByNameMap = SeedWineStyles();
+            Dictionary<string, GrapeVariety> grapeVarietyByNameMap = SeedGrapeVarieties();
+            SeedWines(wineStyleByNameMap, grapeVarietyByNameMap);
         }
 
-        private void SeedWines(List<WineStyle> wineStyles, List<GrapeVariety> grapeVarieties)
+        private void SeedWines(Dictionary<string, WineStyle> wineStyles, Dictionary<string, GrapeVariety> grapeVarieties)
         {
-            //_context.Wines.Add(new Wine("Ime 1", 100, 100, wineStyles[0], grapeVarieties[0]));
-            //_context.Wines.Add(new Wine("Ime 2", 100, 100, wineStyles[0], grapeVarieties[3]));
-            //_context.Wines.Add(new Wine("Ime 1", 100, 100, wineStyles[1], grapeVarieties[2]));
-
             var csvDeserializer = new CsvDeserializer();
-            List<Wine> wines = csvDeserializer.Read<Wine>(WINE_FILE_PATH);
-            foreach (Wine wine in wines)
+            List<WineCsv> winesCsv = csvDeserializer.Read<WineCsv>(WINE_FILE_PATH);
+            foreach (WineCsv wineCsv in winesCsv)
             {
-                wine.Style = wineStyles[_random.Next(wineStyles.Count)];
-                wine.Variety = grapeVarieties[_random.Next(grapeVarieties.Count)];
+                WineStyle wineStyle = wineStyles[wineCsv.Style];
+                GrapeVariety grapeVariety = grapeVarieties[wineCsv.Variety];
+                Wine wine = new Wine()
+                {
+                    Name = wineCsv.Name,
+                    Price = wineCsv.Price,
+                    StockQuantity = wineCsv.StockQuantity,
+                    ImageUrl = wineCsv.ImageUrl,
+                    Style = wineStyle,
+                    StyleId = wineStyle.Id,
+                    Variety = grapeVariety,
+                    VarietyId = grapeVariety.Id
+                };
                 _context.Wines.Add(wine);
             }
-
-            //for (int i = 1; i <= 100; i++)
-            //{
-            //    SeedWine(wineStyles, grapeVarieties, i);
-            //}
         }
 
-        private void SeedWine(List<WineStyle> wineStyles, List<GrapeVariety> grapeVarieties, int counter)
+        private Dictionary<string, WineStyle> SeedWineStyles()
         {
-            _context.Wines.Add(new Wine($"Ime {counter}", (decimal)(_random.Next(10000) + 0.99), _random.Next(200),
-                wineStyles[_random.Next(wineStyles.Count)], grapeVarieties[_random.Next(grapeVarieties.Count)]));
-        }
-
-        private List<WineStyle> SeedWineStyles()
-        {
-            List<WineStyle> wineStyles = [
-                new WineStyle("Penusavo"),
-                new WineStyle("Belo"),
-                new WineStyle("Crveno"),
-                new WineStyle("Roze"),
-                new WineStyle("Dezertno")
-                ];
+            var csvDeserializer = new CsvDeserializer();
+            List<WineStyle> wineStyles = csvDeserializer.Read<WineStyle>(WINE_STYLES_FILE_PATH);
             _context.WineStyles.AddRange(wineStyles);
-            return wineStyles;
+            Dictionary<string, WineStyle> wineStyleByNameMap = new Dictionary<string, WineStyle>(wineStyles.Count);
+            foreach (var wineStyle in wineStyles)
+            {
+                wineStyleByNameMap.Add(wineStyle.Name, wineStyle);
+            }
+            return wineStyleByNameMap;
         }
 
-        private List<GrapeVariety> SeedGrapeVarieties()
+        private Dictionary<string, GrapeVariety> SeedGrapeVarieties()
         {
-            List<GrapeVariety> grapeVarieties = [
-                new GrapeVariety("Sovinjon"),
-                new GrapeVariety("Prokupac"),
-                new GrapeVariety("Tamjanika"),
-                new GrapeVariety("Sardone"),
-                new GrapeVariety("Vranac")
-                ];
+            var csvDeserializer = new CsvDeserializer();
+            List<GrapeVariety> grapeVarieties = csvDeserializer.Read<GrapeVariety>(GRAPE_VARIETIES_FILE_PATH);
             _context.GrapeVarieties.AddRange(grapeVarieties);
-            return grapeVarieties;
+            Dictionary<string, GrapeVariety> grapeVarietyByNameMap = new Dictionary<string, GrapeVariety>(grapeVarieties.Count);
+            foreach (var grapeVariety in grapeVarieties)
+            {
+                grapeVarietyByNameMap.Add(grapeVariety.Name, grapeVariety);
+            }
+            return grapeVarietyByNameMap;
         }
     }
 }

@@ -23,9 +23,7 @@ namespace FONdrum.BusinessLogic.Operations.Wines.Queries.GetWineStyles
         {
             long totalCount = await _context.WineStyles.LongCountAsync();
             if (totalCount == 0)
-            {
                 return new WineStyleCollectionDto([], totalCount);
-            }
 
             //  WITH SUBQUERY
             ICollection<WineStyleDto> wineStyles = await _mapper.ProjectTo<WineStyleDto>(

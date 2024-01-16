@@ -10,8 +10,4 @@
     <ProjectReference Include="..\FONdrum.DataAccess\FONdrum.DataAccess.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Files\" />
-  </ItemGroup>
-
 </Project>

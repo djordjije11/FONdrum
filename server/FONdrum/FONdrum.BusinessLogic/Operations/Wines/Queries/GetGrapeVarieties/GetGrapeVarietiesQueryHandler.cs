@@ -23,9 +23,7 @@ namespace FONdrum.BusinessLogic.Operations.Wines.Queries.GetGrapeVarieties
         {
             long totalCount = await _context.GrapeVarieties.LongCountAsync();
             if (totalCount == 0)
-            {
                 return new GrapeVarietyCollectionDto([], totalCount);
-            }
 
             //  WITH SUBQUERY
             ICollection<GrapeVarietyDto> grapeVarieties = await _mapper.ProjectTo<GrapeVarietyDto>(

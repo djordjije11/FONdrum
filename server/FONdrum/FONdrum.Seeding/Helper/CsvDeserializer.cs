@@ -6,7 +6,7 @@ namespace FONdrum.Seeding.Helper
     {
         /// <summary>
         /// Reads objects from csv file and returns them mapped.
-        /// All values are mapped to object's PROPERTIES.
+        /// All values are mapped to object's PROPERTIES (not fields).
         /// </summary>
         /// <typeparam name="T">type of objects to read</typeparam>
         /// <param name="filePath">An absolute path to a csv file.</param>
