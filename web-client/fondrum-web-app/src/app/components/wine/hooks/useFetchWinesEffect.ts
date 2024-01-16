@@ -20,10 +20,13 @@ export default function useFetchWinesEffect(
         )
       );
     })();
+    //  Ukoliko stavim checkedWineStyleIds i checkedGrapeVarietyIds u dependencies, slace duplo zahtev
+    //  (s obzirom da promena njih okida useEffect za promenu pageQueryParams)
+    //  A React izbacuje warning za to - sta je resenje?
   }, [
-    checkedWineStyleIds,
-    checkedGrapeVarietyIds,
     pageQueryParams,
+    // checkedWineStyleIds,
+    // checkedGrapeVarietyIds,
     setPagedWine,
   ]);
 }
