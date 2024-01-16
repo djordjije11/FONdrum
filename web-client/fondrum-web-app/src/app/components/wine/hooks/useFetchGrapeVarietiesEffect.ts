@@ -6,13 +6,31 @@ export default function useFetchGrapeVarietiesEffect(
   setGrapeVarietyColleciton: React.Dispatch<
     React.SetStateAction<GrapeVarietyCollection>
   >,
+  setCheckedGrapeVarietyIds: React.Dispatch<React.SetStateAction<string[]>>,
   checkedWineStyleIds: string[]
 ) {
   useEffect(() => {
     (async () => {
-      setGrapeVarietyColleciton(
-        await getGrapeVarietiesAsync(checkedWineStyleIds)
+      const grapeVarietyCollection = await getGrapeVarietiesAsync(
+        checkedWineStyleIds
       );
+      setGrapeVarietyColleciton(grapeVarietyCollection);
+      setCheckedGrapeVarietyIds((prev) => {
+        const curr = prev.filter(
+          (cgv) =>
+            grapeVarietyCollection.grapeVarieties.find(
+              (gv) => gv.id === cgv
+            ) !== undefined
+        );
+        if (curr.length === prev.length) {
+          return prev;
+        }
+        return curr;
+      });
     })();
-  }, [checkedWineStyleIds, setGrapeVarietyColleciton]);
+  }, [
+    checkedWineStyleIds,
+    setCheckedGrapeVarietyIds,
+    setGrapeVarietyColleciton,
+  ]);
 }

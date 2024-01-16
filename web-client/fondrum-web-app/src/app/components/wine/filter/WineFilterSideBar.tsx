@@ -30,8 +30,16 @@ export default function WineFilterSideBar(props: FilterSideBarProps) {
     grapeVarieties: [] as GrapeVariety[],
   } as GrapeVarietyCollection);
 
-  useFetchWineStylesEffect(setWineStyleCollection, checkedGrapeVarietyIds);
-  useFetchGrapeVarietiesEffect(setGrapeVarietyColleciton, checkedWineStyleIds);
+  useFetchWineStylesEffect(
+    setWineStyleCollection,
+    setCheckedWineStyleIds,
+    checkedGrapeVarietyIds
+  );
+  useFetchGrapeVarietiesEffect(
+    setGrapeVarietyColleciton,
+    setCheckedGrapeVarietyIds,
+    checkedWineStyleIds
+  );
 
   function handleWineStyleChecked(id: string, checked: boolean) {
     if (checked) {
