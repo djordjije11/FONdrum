@@ -10,6 +10,7 @@
     "Default": "{{ Database Connection string }}"
   },
   "CORS": {
+    "PolicyName": "FONdrumAppCORS",
     "Origins": [ "http://localhost:3000" ]
   }
 }
