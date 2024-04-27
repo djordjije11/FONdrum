@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FONdrum.API", "FONdrum.API\FONdrum.API.csproj", "{54D7038A-4174-4F11-909F-FE631CABFE9A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FONdrum.Domain", "FONdrum.Domain\FONdrum.Domain.csproj", "{F0D8EA8D-DA6D-4956-884A-794BA603CB35}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FONdrum.DTO", "FONdrum.DTO\FONdrum.DTO.csproj", "{64CE389D-ADC0-4B7E-BA36-BB3BEEC8D8E2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FONdrum.DataAccess", "FONdrum.DataAccess\FONdrum.DataAccess.csproj", "{DCE7499C-182A-478E-9D01-44B98F25E809}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FONdrum.BusinessLogic", "FONdrum.BusinessLogic\FONdrum.BusinessLogic.csproj", "{0FD51087-3ACC-4CEC-A417-5872A7DBCD42}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FONdrum.Seeding", "FONdrum.Seeding\FONdrum.Seeding.csproj", "{64BABFED-567C-498F-81D9-E716C8E99B2B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54D7038A-4174-4F11-909F-FE631CABFE9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54D7038A-4174-4F11-909F-FE631CABFE9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54D7038A-4174-4F11-909F-FE631CABFE9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54D7038A-4174-4F11-909F-FE631CABFE9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0D8EA8D-DA6D-4956-884A-794BA603CB35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0D8EA8D-DA6D-4956-884A-794BA603CB35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0D8EA8D-DA6D-4956-884A-794BA603CB35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0D8EA8D-DA6D-4956-884A-794BA603CB35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64CE389D-ADC0-4B7E-BA36-BB3BEEC8D8E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64CE389D-ADC0-4B7E-BA36-BB3BEEC8D8E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64CE389D-ADC0-4B7E-BA36-BB3BEEC8D8E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64CE389D-ADC0-4B7E-BA36-BB3BEEC8D8E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCE7499C-182A-478E-9D01-44B98F25E809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCE7499C-182A-478E-9D01-44B98F25E809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCE7499C-182A-478E-9D01-44B98F25E809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCE7499C-182A-478E-9D01-44B98F25E809}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FD51087-3ACC-4CEC-A417-5872A7DBCD42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FD51087-3ACC-4CEC-A417-5872A7DBCD42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FD51087-3ACC-4CEC-A417-5872A7DBCD42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FD51087-3ACC-4CEC-A417-5872A7DBCD42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64BABFED-567C-498F-81D9-E716C8E99B2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64BABFED-567C-498F-81D9-E716C8E99B2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64BABFED-567C-498F-81D9-E716C8E99B2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64BABFED-567C-498F-81D9-E716C8E99B2B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {919BD059-13EE-4E7F-A453-290E3B35E1D2}
+	EndGlobalSection
+EndGlobal

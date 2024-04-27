@@ -1,0 +1,16 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "Default": "{{ Database Connection string }}"
+  },
+  "CORS": {
+    "PolicyName": "FONdrumAppCORS",
+    "Origins": [ "http://localhost:3000" ]
+  }
+}
