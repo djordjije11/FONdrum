@@ -9,10 +9,6 @@ export default function useChangePageQueryParamsOnFilterChangeEffect(
   useEffect(() => {
     (async () => {
       setPageQueryParams((prev) => {
-        // Ovo treba samo ako se u dependencies za useFetchWinesEffect doda checkedWineStyleIds i checkedGrapeVarietyIds
-        // if (prev.pageNumber === 1) {
-        //   return prev;
-        // }
         return { ...prev, pageNumber: 1 };
       });
     })();

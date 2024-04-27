@@ -5,6 +5,5 @@ export default function failAlert(title: string, text: string) {
     icon: "error",
     title,
     text,
-    // footer: '<a href="#">Why do I have this issue?</a>',
   });
 }
