@@ -68,7 +68,7 @@ export default function WinePage() {
     }
 
     return (
-      <div className="flex justify-start gap-4 flex-wrap w-11/12 pl-2">
+      <div className="flex justify-start gap-0 flex-wrap w-11/12 pl-2">
         {pagedWine.data.map((wine) => (
           <WineCard
             key={wine.id}
@@ -92,22 +92,24 @@ export default function WinePage() {
             setCheckedGrapeVarietyIds={setCheckedGrapeVarietyIds}
           />
         </div>
-        <div className="min-h-full col-span-7 flex justify-center">
-          <WinePagination
-            pageInfo={pagedWine.pageInfo}
-            handlePageChange={(pageNumber) =>
-              setPageQueryParams((prev) => ({ ...prev, pageNumber }))
-            }
-          >
-            <WineCardsContainer />
-          </WinePagination>
-        </div>
-        <div className="min-h-full col-span-3 flex justify-center px-8">
-          <ShoppingCartContainer
-            order={order}
-            setOrder={setOrder}
-            onClick={() => navigate(ORDER_PAGE)}
-          />
+        <div className="min-h-full col-span-10 grid grid-cols-12">
+          <div className="min-h-full col-span-9 flex justify-center">
+            <WinePagination
+              pageInfo={pagedWine.pageInfo}
+              handlePageChange={(pageNumber) =>
+                setPageQueryParams((prev) => ({ ...prev, pageNumber }))
+              }
+            >
+              <WineCardsContainer />
+            </WinePagination>
+          </div>
+          <div className="min-h-full col-span-3 flex justify-center px-6">
+            <ShoppingCartContainer
+              order={order}
+              setOrder={setOrder}
+              onClick={() => navigate(ORDER_PAGE)}
+            />
+          </div>
         </div>
       </div>
       <div className="row-span-1 flex justify-end"></div>
