@@ -12,5 +12,7 @@ and a brief description of the wine cellar on the application's home page.
 ![Conceptual model](https://github.com/djordjije11/FONdrum-E-trgovina/blob/main/documentation/FONdrum_PMOV.png?raw=true "Conceptual model")
 
 ## Implementation
-
 Implementation tools: C#, ASP.NET Core, Entity Framework Core, ReactJS, Typescript, Tailwind CSS
+
+## User interface
+![User interface](https://github.com/djordjije11/FONdrum/blob/main/documentation/FONdrum_user_interface.png?raw=true "User interface")
